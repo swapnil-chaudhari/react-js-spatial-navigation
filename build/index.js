@@ -1844,7 +1844,14 @@ var Focusable = function (_Component2) {
       var _this3 = this;
 
       var classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
-
+      var sn_right = '';
+      if (this.props.data_sn_right && this.props.data_sn_right != '') {
+        sn_right = this.props.data_sn_right;
+      }
+      var data_identifier = '';
+      if (this.props.data_identifier && this.props.data_identifier != '') {
+        data_identifier = this.props.data_identifier;
+      }
       if (this.props.active) {
         classNames.push(config.activeClassName);
       }
@@ -1857,7 +1864,7 @@ var Focusable = function (_Component2) {
         'div',
         { className: classNames.join(" "), ref: function ref(e) {
             return _this3.el = e;
-          }, tabIndex: '-1' },
+          }, tabIndex: '-1', 'data-sn-right': sn_right != '' ? sn_right : null, 'data-identifier': data_identifier ? data_identifier : null },
         this.props.children
       );
     }
@@ -1933,7 +1940,6 @@ var FocusableSection = function (_Component3) {
       if (defaultElement && defaultElement === 'active') {
         defaultElement = this._getSelector() + ('.' + config.activeClassName);
       }
-
       _spatial_navigation2.default.set(this.sectionId, {
         selector: this._getSelector(),
         enterTo: enterTo,

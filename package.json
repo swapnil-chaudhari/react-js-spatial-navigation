@@ -1,14 +1,14 @@
 {
-  "name": "react-js-spatial-navigation",
-  "version": "0.0.5",
-  "description": "A wrapper of js-spatial-navigation to react components",
+  "name": "react-js-spatial-navigation-sunit",
+  "version": "0.0.1",
+  "description": "Fork of dead/react-js-spatial-navigation (A wrapper of js-spatial-navigation to react components)",
   "main": "build/index.js",
   "bugs": {
-    "url": "https://github.com/dead/react-js-spatial-navigation/issues"
+    "url": "https://github.com/sunit-saavn/react-js-spatial-navigation/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dead/react-js-spatial-navigation.git"
+    "url": "git+https://github.com/sunit-saavn/react-js-spatial-navigation.git"
   },
   "peerDependencies": {
     "react": "^15.5.4"
@@ -23,9 +23,9 @@
     "build": "webpack --config webpack.config.js"
   },
   "author": {
-    "name": "Gustavo Bennemann de Moura",
-    "email": "gustavobenn@gmail.com",
-    "url": "https://github.com/dead"
+    "name": "Sunit Swain",
+    "email": "sunitswn91@gmail.com",
+    "url": "https://github.com/sunit-saavn"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
