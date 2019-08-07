@@ -176,7 +176,14 @@ class Focusable extends Component {
 
   render() {
     let classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
-
+    let sn_right = '';
+    if(this.props.data_sn_right && this.props.data_sn_right != ''){
+      sn_right = this.props.data_sn_right;
+    }
+    let data_identifier = '';
+    if(this.props.data_identifier && this.props.data_identifier != ''){
+      data_identifier = this.props.data_identifier;
+    }
     if (this.props.active) {
       classNames.push(config.activeClassName);
     }
@@ -184,9 +191,9 @@ class Focusable extends Component {
     if (this.props.className) {
       classNames.push(this.props.className);
     }
-
+    
     return (
-      <div className={classNames.join(" ")} ref={e => this.el = e} tabIndex="-1">
+      <div className={classNames.join(" ")} ref={e => this.el = e} tabIndex="-1" data-sn-right={(sn_right!='')?sn_right:null} data-identifier={data_identifier?data_identifier:null}>
         {this.props.children}
       </div>
     );
@@ -245,7 +252,6 @@ class FocusableSection extends Component {
     if (defaultElement && defaultElement === 'active') {
       defaultElement = this._getSelector() + `.${config.activeClassName}`;
     }
-
     JsSpatialNavigation.set(this.sectionId, {
       selector: this._getSelector(),
       enterTo: enterTo,
@@ -268,3 +274,4 @@ FocusableSection.childContextTypes = {
 
 
 export { SpatialNavigation as default, FocusableSection, Focusable, JsSpatialNavigation };
+
