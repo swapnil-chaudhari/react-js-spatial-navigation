@@ -1844,9 +1844,13 @@ var Focusable = function (_Component2) {
       var _this3 = this;
 
       var classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
-      var sn_right = '';
+      var sn_right = '',
+          sn_left = '';
       if (this.props.data_sn_right && this.props.data_sn_right != '') {
         sn_right = this.props.data_sn_right;
+      }
+      if (this.props.data_sn_left && this.props.data_sn_left != '') {
+        sn_left = this.props.data_sn_left;
       }
       var data_identifier = '';
       if (this.props.data_identifier && this.props.data_identifier != '') {
@@ -1859,12 +1863,12 @@ var Focusable = function (_Component2) {
       if (this.props.className) {
         classNames.push(this.props.className);
       }
-
+      console.log("I'm here ", data_identifier, sn_left);
       return _react2.default.createElement(
         'div',
         { className: classNames.join(" "), ref: function ref(e) {
             return _this3.el = e;
-          }, tabIndex: '-1', 'data-sn-right': sn_right != '' ? sn_right : null, 'data-identifier': data_identifier ? data_identifier : null },
+          }, tabIndex: '-1', 'data-identifier': data_identifier ? data_identifier : null, 'data-sn-right': sn_right != '' ? sn_right : null, 'data-sn-left': sn_left != '' ? sn_left : null },
         this.props.children
       );
     }
