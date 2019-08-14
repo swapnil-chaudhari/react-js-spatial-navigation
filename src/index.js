@@ -160,7 +160,6 @@ class Focusable extends Component {
   }
 
   focusChildElement(){
-    console.log("hello in focus child ele ", this.el);
     if(!this.el){
       return false;
     }else{

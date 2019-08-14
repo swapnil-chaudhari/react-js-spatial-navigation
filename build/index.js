@@ -1828,7 +1828,6 @@ var Focusable = function (_Component2) {
   }, {
     key: 'focusChildElement',
     value: function focusChildElement() {
-      console.log("hello in focus child ele ", this.el);
       if (!this.el) {
         return false;
       } else {
