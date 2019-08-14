@@ -1028,9 +1028,11 @@ function focusChanged(elem, sectionId) {
   if (!sectionId) {
     sectionId = getSectionId(elem);
   }
-  if (sectionId) {
+  if (sectionId && _sections[sectionId]) {
     _sections[sectionId].lastFocusedElement = elem;
     _lastSectionId = sectionId;
+  } else {
+    _lastSectionId = '';
   }
 }
 
@@ -1781,24 +1783,25 @@ function getSelector(id) {
 var Focusable = function (_Component2) {
   _inherits(Focusable, _Component2);
 
-  function Focusable() {
-    var _ref;
-
-    var _temp, _this2, _ret;
-
+  function Focusable(props) {
     _classCallCheck(this, Focusable);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this2 = _possibleConstructorReturn(this, (Focusable.__proto__ || Object.getPrototypeOf(Focusable)).call(this, props));
 
-    return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Focusable.__proto__ || Object.getPrototypeOf(Focusable)).call.apply(_ref, [this].concat(args))), _this2), _this2._componentFocused = function (event) {
+    _this2._componentFocused = function (event) {
       return _this2.componentFocused(event);
-    }, _this2._componentUnfocused = function (event) {
+    };
+
+    _this2._componentUnfocused = function (event) {
       return _this2.componentUnfocused(event);
-    }, _this2._componentClickEnter = function (event) {
+    };
+
+    _this2._componentClickEnter = function (event) {
       return _this2.componentClickEnter(event);
-    }, _temp), _possibleConstructorReturn(_this2, _ret);
+    };
+
+    _this2.focusChildElement = _this2.focusChildElement.bind(_this2);
+    return _this2;
   }
 
   _createClass(Focusable, [{
@@ -1820,6 +1823,16 @@ var Focusable = function (_Component2) {
     value: function componentClickEnter(e) {
       if (this.props.onClickEnter) {
         this.props.onClickEnter(e);
+      }
+    }
+  }, {
+    key: 'focusChildElement',
+    value: function focusChildElement() {
+      console.log("hello in focus child ele ", this.el);
+      if (!this.el) {
+        return false;
+      } else {
+        _spatial_navigation2.default.focus(this.el);
       }
     }
   }, {
@@ -1863,7 +1876,6 @@ var Focusable = function (_Component2) {
       if (this.props.className) {
         classNames.push(this.props.className);
       }
-      console.log("I'm here ", data_identifier, sn_left);
       return _react2.default.createElement(
         'div',
         { className: classNames.join(" "), ref: function ref(e) {

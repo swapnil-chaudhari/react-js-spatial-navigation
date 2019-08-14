@@ -653,9 +653,11 @@ function focusChanged(elem, sectionId) {
   if (!sectionId) {
     sectionId = getSectionId(elem);
   }
-  if (sectionId) {
+  if (sectionId && _sections[sectionId]) {
     _sections[sectionId].lastFocusedElement = elem;
     _lastSectionId = sectionId;
+  }else{
+    _lastSectionId = '';
   }
 }
 

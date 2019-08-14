@@ -137,6 +137,10 @@ function getSelector(id) {
 *     A function that will be fired when the component is focused and enter key is pressed.
 */
 class Focusable extends Component {
+  constructor(props){
+    super(props);
+    this.focusChildElement = this.focusChildElement.bind(this);
+  }
   componentFocused(e) {
     if (this.props.onFocus) {
       this.props.onFocus(e);
@@ -152,6 +156,15 @@ class Focusable extends Component {
   componentClickEnter(e) {
     if (this.props.onClickEnter) {
       this.props.onClickEnter(e);
+    }
+  }
+
+  focusChildElement(){
+    console.log("hello in focus child ele ", this.el);
+    if(!this.el){
+      return false;
+    }else{
+      JsSpatialNavigation.focus(this.el);
     }
   }
 
@@ -194,7 +207,6 @@ class Focusable extends Component {
     if (this.props.className) {
       classNames.push(this.props.className);
     }
-    console.log("I'm here ",data_identifier , sn_left);
     return (
       <div className={classNames.join(" ")} ref={e => this.el = e} tabIndex="-1" data-identifier={data_identifier?data_identifier:null} data-sn-right={(sn_right!='')?sn_right:null} data-sn-left={(sn_left!='')?sn_left:null} >
         {this.props.children}
