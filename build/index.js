@@ -369,6 +369,7 @@ var _sectionCount = 0;
 var _defaultSectionId = '';
 var _lastSectionId = '';
 var _duringFocusChange = false;
+var _ignoreEnterKeyUp = false;
 
 /************/
 /* Polyfill */
@@ -1091,7 +1092,14 @@ function onKeyUp(evt) {
   if (evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey) {
     return;
   }
+
   if (!_pause && _sectionCount && evt.keyCode == 13) {
+    if (_ignoreEnterKeyUp) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      _ignoreEnterKeyUp = false;
+      return;
+    }
     var currentFocusedElement = getCurrentFocusedElement();
     if (currentFocusedElement && getSectionId(currentFocusedElement)) {
       if (!fireEvent(currentFocusedElement, 'enter-up')) {
@@ -1280,6 +1288,10 @@ var JsSpatialNavigation = {
 
   resume: function resume() {
     _pause = false;
+  },
+
+  ignoreEnterKeyUp: function ignoreEnterKeyUp(state) {
+    _ignoreEnterKeyUp = state;
   },
 
   // focus([silent])
