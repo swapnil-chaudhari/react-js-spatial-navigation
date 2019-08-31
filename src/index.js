@@ -102,6 +102,7 @@ class SpatialNavigation extends Component {
       JsSpatialNavigation.init();
       JsSpatialNavigation.add(config);
       JsSpatialNavigation.focus();
+      window.JsSpatialNavigation = JsSpatialNavigation;
 
     } else {
       this.props.customInit.call(this, config);

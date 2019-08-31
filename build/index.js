@@ -1739,6 +1739,7 @@ var SpatialNavigation = function (_Component) {
         _spatial_navigation2.default.init();
         _spatial_navigation2.default.add(config);
         _spatial_navigation2.default.focus();
+        window.JsSpatialNavigation = _spatial_navigation2.default;
       } else {
         this.props.customInit.call(this, config);
       }
