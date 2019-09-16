@@ -585,7 +585,8 @@ function fireEvent(elem, type, details, cancelable) {
   }
   var evt = document.createEvent('CustomEvent');
   evt.initCustomEvent(EVENT_PREFIX + type, true, cancelable, details);
-  return elem.dispatchEvent(evt);
+  var result = elem.dispatchEvent(evt);
+  return result;
 }
 
 function focusElement(elem, sectionId, direction) {

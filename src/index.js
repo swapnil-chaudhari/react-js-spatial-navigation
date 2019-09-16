@@ -196,6 +196,12 @@ class Focusable extends Component {
     if(this.props.data_sn_left && this.props.data_sn_left != ''){
       sn_left = this.props.data_sn_left;
     }
+    if(this.props.data_sn_up && this.props.data_sn_up != ''){
+      sn_up = this.props.data_sn_up;
+    }
+    if(this.props.data_sn_down && this.props.data_sn_down != ''){
+      sn_down = this.props.data_sn_down;
+    }
     let data_identifier = '';
     if(this.props.data_identifier && this.props.data_identifier != ''){
       data_identifier = this.props.data_identifier;
@@ -208,7 +214,13 @@ class Focusable extends Component {
       classNames.push(this.props.className);
     }
     return (
-      <div className={classNames.join(" ")} ref={e => this.el = e} tabIndex="-1" data-identifier={data_identifier?data_identifier:null} data-sn-right={(sn_right!='')?sn_right:null} data-sn-left={(sn_left!='')?sn_left:null} >
+      <div className={classNames.join(" ")} ref={e => this.el = e} tabIndex="-1" 
+      data-identifier={data_identifier?data_identifier:null} 
+      data-sn-right={(sn_right!='')?sn_right:null} 
+      data-sn-left={(sn_left!='')?sn_left:null} 
+      data-sn-down={(sn_down!='')?sn_down:null}
+      data-sn-up={(sn_up!='')?sn_up:null}
+      >
         {this.props.children}
       </div>
     );
