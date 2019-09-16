@@ -1706,7 +1706,9 @@ var Focusable = function (_Component2) {
 
       var classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
       var sn_right = '',
-          sn_left = '';
+          sn_left = '',
+          sn_up = '',
+          sn_down = '';
       if (this.props.data_sn_right && this.props.data_sn_right != '') {
         sn_right = this.props.data_sn_right;
       }
