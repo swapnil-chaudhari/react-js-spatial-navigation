@@ -189,7 +189,7 @@ class Focusable extends Component {
 
   render() {
     let classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
-    let sn_right = '', sn_left ='';
+    let sn_right = '', sn_left ='', sn_up ='', sn_down='';
     if(this.props.data_sn_right && this.props.data_sn_right != ''){
       sn_right = this.props.data_sn_right;
     }
