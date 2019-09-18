@@ -1103,6 +1103,11 @@ function onKeyUp(evt) {
     }
     var currentFocusedElement = getCurrentFocusedElement();
     if (currentFocusedElement && getSectionId(currentFocusedElement)) {
+      if (evt.target != currentFocusedElement) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        return;
+      }
       if (!fireEvent(currentFocusedElement, 'enter-up')) {
         evt.preventDefault();
         evt.stopPropagation();
