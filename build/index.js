@@ -1823,8 +1823,12 @@ var FocusableSection = function (_Component3) {
       if (defaultElement && defaultElement === 'active') {
         defaultElement = this._getSelector() + ('.' + config.activeClassName);
       }
+      var selector = this._getSelector();
+      if (this.props.selector && this.props.selector != '') {
+        selector = selector + ', ' + this.props.selector;
+      }
       _spatial_navigation2.default.set(this.sectionId, {
-        selector: this._getSelector(),
+        selector: selector,
         enterTo: enterTo,
         defaultElement: defaultElement
       });

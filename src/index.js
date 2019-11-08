@@ -279,8 +279,12 @@ class FocusableSection extends Component {
     if (defaultElement && defaultElement === 'active') {
       defaultElement = this._getSelector() + `.${config.activeClassName}`;
     }
+    let selector = this._getSelector();
+    if(this.props.selector && this.props.selector != ''){
+        selector = selector + ', '+ this.props.selector;
+    }
     JsSpatialNavigation.set(this.sectionId, {
-      selector: this._getSelector(),
+      selector: selector,
       enterTo: enterTo,
       defaultElement: defaultElement
     });
