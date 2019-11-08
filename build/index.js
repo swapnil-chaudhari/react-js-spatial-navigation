@@ -1455,7 +1455,9 @@ module.exports = require("react");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.JsSpatialNavigation = exports.Focusable = exports.FocusableSection = exports.default = undefined;
+exports.JsSpatialNavigation = exports.FocusableInput = exports.Focusable = exports.FocusableSection = exports.default = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -1760,6 +1762,127 @@ Focusable.contextTypes = {
   focusableSectionId: _propTypes2.default.string
 };
 
+var FocusableInput = function (_Component3) {
+  _inherits(FocusableInput, _Component3);
+
+  function FocusableInput(props) {
+    _classCallCheck(this, FocusableInput);
+
+    var _this4 = _possibleConstructorReturn(this, (FocusableInput.__proto__ || Object.getPrototypeOf(FocusableInput)).call(this, props));
+
+    _this4._componentFocused = function (event) {
+      return _this4.componentFocused(event);
+    };
+
+    _this4._componentUnfocused = function (event) {
+      return _this4.componentUnfocused(event);
+    };
+
+    _this4._componentClickEnter = function (event) {
+      return _this4.componentClickEnter(event);
+    };
+
+    _this4.getInputDOMElement = _this4.getInputDOMElement.bind(_this4);
+    return _this4;
+  }
+
+  _createClass(FocusableInput, [{
+    key: 'componentFocused',
+    value: function componentFocused(e) {
+      if (this.props.onFocus) {
+        this.props.onFocus(e);
+      }
+    }
+  }, {
+    key: 'componentUnfocused',
+    value: function componentUnfocused(e) {
+      if (this.props.onUnfocus) {
+        this.props.onUnfocus(e);
+      }
+    }
+  }, {
+    key: 'componentClickEnter',
+    value: function componentClickEnter(e) {
+      if (this.props.onClickEnter) {
+        this.props.onClickEnter(e);
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.el) return;
+
+      this.el.addEventListener("sn:focused", this._componentFocused);
+      this.el.addEventListener("sn:unfocused", this._componentUnfocused);
+      this.el.addEventListener("sn:enter-up", this._componentClickEnter);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.el.removeEventListener("sn:focused", this._componentFocused);
+      this.el.removeEventListener("sn:unfocused", this._componentUnfocused);
+      this.el.removeEventListener("sn:enter-up", this._componentClickEnter);
+    }
+  }, {
+    key: 'getInputDOMElement',
+    value: function getInputDOMElement() {
+      return this.el;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      var classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
+      var sn_right = '',
+          sn_left = '',
+          sn_up = '',
+          sn_down = '';
+      if (this.props.data_sn_right && this.props.data_sn_right != '') {
+        sn_right = this.props.data_sn_right;
+      }
+      if (this.props.data_sn_left && this.props.data_sn_left != '') {
+        sn_left = this.props.data_sn_left;
+      }
+      if (this.props.data_sn_up && this.props.data_sn_up != '') {
+        sn_up = this.props.data_sn_up;
+      }
+      if (this.props.data_sn_down && this.props.data_sn_down != '') {
+        sn_down = this.props.data_sn_down;
+      }
+      var data_identifier = '';
+      if (this.props.data_identifier && this.props.data_identifier != '') {
+        data_identifier = this.props.data_identifier;
+      }
+      if (this.props.active) {
+        classNames.push(config.activeClassName);
+      }
+
+      if (this.props.className) {
+        classNames.push(this.props.className);
+      }
+      console.log("this.props ", _extends({}, this.props));
+      return _react2.default.createElement('input', _extends({ ref: function ref(e) {
+          return _this5.el = e;
+        }, tabIndex: '-1',
+        'data-identifier': data_identifier ? data_identifier : null,
+        'data-sn-right': sn_right != '' ? sn_right : null,
+        'data-sn-left': sn_left != '' ? sn_left : null,
+        'data-sn-down': sn_down != '' ? sn_down : null,
+        'data-sn-up': sn_up != '' ? sn_up : null
+      }, this.props, {
+        className: classNames.join(" ")
+      }));
+    }
+  }]);
+
+  return FocusableInput;
+}(_react.Component);
+
+FocusableInput.contextTypes = {
+  focusableSectionId: _propTypes2.default.string
+};
+
 /*
 * A Focusable Section can specify a behaviour before focusing an element.
 * I.e. selecting a default element, the first element or an active one.
@@ -1781,8 +1904,8 @@ Focusable.contextTypes = {
 *       * an empty string.
 */
 
-var FocusableSection = function (_Component3) {
-  _inherits(FocusableSection, _Component3);
+var FocusableSection = function (_Component4) {
+  _inherits(FocusableSection, _Component4);
 
   function FocusableSection() {
     _classCallCheck(this, FocusableSection);
@@ -1854,6 +1977,7 @@ FocusableSection.childContextTypes = {
 exports.default = SpatialNavigation;
 exports.FocusableSection = FocusableSection;
 exports.Focusable = Focusable;
+exports.FocusableInput = FocusableInput;
 exports.JsSpatialNavigation = _spatial_navigation2.default;
 
 /***/ }),

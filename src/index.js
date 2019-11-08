@@ -231,6 +231,101 @@ Focusable.contextTypes = {
   focusableSectionId: PropTypes.string
 };
 
+
+class FocusableInput extends Component {
+  constructor(props){
+    super(props);
+    this.getInputDOMElement = this.getInputDOMElement.bind(this);
+  }
+  componentFocused(e) {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+  }
+
+  componentUnfocused(e) {
+    if (this.props.onUnfocus) {
+      this.props.onUnfocus(e);
+    }
+  }
+
+  componentClickEnter(e) {
+    if (this.props.onClickEnter) {
+      this.props.onClickEnter(e);
+    }
+  }
+
+  _componentFocused = (event) => this.componentFocused(event);
+  _componentUnfocused = (event) => this.componentUnfocused(event);
+  _componentClickEnter = (event) => this.componentClickEnter(event);
+
+  componentDidMount() {
+    if (!this.el)
+      return;
+
+    this.el.addEventListener("sn:focused", this._componentFocused);
+    this.el.addEventListener("sn:unfocused", this._componentUnfocused);
+    this.el.addEventListener("sn:enter-up", this._componentClickEnter);
+  }
+
+  componentWillUnmount() {
+    this.el.removeEventListener("sn:focused", this._componentFocused);
+    this.el.removeEventListener("sn:unfocused", this._componentUnfocused);
+    this.el.removeEventListener("sn:enter-up", this._componentClickEnter);
+  }
+
+  getInputDOMElement(){
+    return this.el;
+  }
+
+  render() {
+    let classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
+    let sn_right = '', sn_left ='', sn_up ='', sn_down='';
+    if(this.props.data_sn_right && this.props.data_sn_right != ''){
+      sn_right = this.props.data_sn_right;
+    }
+    if(this.props.data_sn_left && this.props.data_sn_left != ''){
+      sn_left = this.props.data_sn_left;
+    }
+    if(this.props.data_sn_up && this.props.data_sn_up != ''){
+      sn_up = this.props.data_sn_up;
+    }
+    if(this.props.data_sn_down && this.props.data_sn_down != ''){
+      sn_down = this.props.data_sn_down;
+    }
+    let data_identifier = '';
+    if(this.props.data_identifier && this.props.data_identifier != ''){
+      data_identifier = this.props.data_identifier;
+    }
+    if (this.props.active) {
+      classNames.push(config.activeClassName);
+    }
+
+    if (this.props.className) {
+      classNames.push(this.props.className);
+    }
+    console.log("this.props ", {...this.props});
+    return (
+      <input ref={e => this.el = e} tabIndex="-1" 
+      data-identifier={data_identifier?data_identifier:null} 
+      data-sn-right={(sn_right!='')?sn_right:null} 
+      data-sn-left={(sn_left!='')?sn_left:null} 
+      data-sn-down={(sn_down!='')?sn_down:null}
+      data-sn-up={(sn_up!='')?sn_up:null}
+      {...this.props}
+      className={classNames.join(" ")} 
+      >
+       
+      </input>
+    );
+  }
+}
+
+FocusableInput.contextTypes = {
+  focusableSectionId: PropTypes.string
+};
+
+
 /*
 * A Focusable Section can specify a behaviour before focusing an element.
 * I.e. selecting a default element, the first element or an active one.
@@ -304,5 +399,5 @@ FocusableSection.childContextTypes = {
 };
 
 
-export { SpatialNavigation as default, FocusableSection, Focusable, JsSpatialNavigation };
+export { SpatialNavigation as default, FocusableSection, Focusable, FocusableInput, JsSpatialNavigation };
 
