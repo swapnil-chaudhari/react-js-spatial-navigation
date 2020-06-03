@@ -1,39 +1,39 @@
 {
-  "name": "react-js-spatial-navigation-sunit",
-  "version": "0.0.12",
-  "description": "Fork of dead/react-js-spatial-navigation (A wrapper of js-spatial-navigation to react components)",
-  "main": "build/index.js",
-  "bugs": {
-    "url": "https://github.com/sunit-saavn/react-js-spatial-navigation/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sunit-saavn/react-js-spatial-navigation.git"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
-  "dependencies": {
-    "react": "^16.0.0",
-    "webpack": "^2.6.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch",
-    "build": "webpack --config webpack.config.js"
-  },
-  "author": {
-    "name": "Sunit Swain",
-    "email": "sunitswn91@gmail.com",
-    "url": "https://github.com/sunit-saavn"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.0.15"
-  }
+    "name": "react-js-spatial-navigation-swapnil",
+    "version": "0.0.12",
+    "description": "Fork of dead/react-js-spatial-navigation (A wrapper of js-spatial-navigation to react components)",
+    "main": "build/index.js",
+    "bugs": {
+        "url": "https://github.com/swapnil-chaudhari/react-js-spatial-navigation/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/swapnil-chaudhari/react-js-spatial-navigation.git"
+    },
+    "peerDependencies": {
+        "react": "^16.0.0"
+    },
+    "dependencies": {
+        "react": "^16.0.0",
+        "webpack": "^2.6.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack --watch",
+        "build": "webpack --config webpack.config.js"
+    },
+    "author": {
+        "name": "Swapnil Chaudhari",
+        "email": "theswapnilchaudhari@gmail.com",
+        "url": "https://github.com/swapnil-chaudhari"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-plugin-transform-object-rest-spread": "^6.23.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-stage-0": "^6.0.15"
+    }
 }
