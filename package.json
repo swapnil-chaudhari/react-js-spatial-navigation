@@ -6,6 +6,9 @@
     "bugs": {
         "url": "https://github.com/swapnil-chaudhari/react-js-spatial-navigation/issues"
     },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/swapnil-chaudhari/react-js-spatial-navigation.git"
